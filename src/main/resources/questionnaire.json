@@ -1,0 +1,93 @@
+[
+	{
+		"SectionName" : "CICD and Automation",
+		"Questions" : [
+			{
+				"title" : "Deployment Frequency",
+				"QuestionText" : "How frequently do you deploy code to production? ",
+				"Answers" : [
+					{"Answer" : "Once every few months", "Score" : 1},
+					{"Answer" : "Monthly", "Score" : 2},
+					{"Answer" : "Weekly", "Score" : 3},
+					{"Answer" : "Daily", "Score" : 4},
+					{"Answer" : "Several per day", "Score" : 5}
+					]
+			},
+			{
+				"title" : "CICD Automation",
+				"QuestionText" : "Do you have a fully automated build and deployment processes? ",
+				"Answers" : [
+					{"Answer" : "No", "Score" : 1},
+					{"Answer" : "Build is automated but deployment is not.", "Score" : 2},
+					{"Answer" : "Both are fully automated ", "Score" : 5}
+					]
+			},
+			{
+				"title" : "CICD Pipeline",
+				"QuestionText" : "Do you use a CICD pipeline tool for your software delivery? ",
+				"Answers" : [
+					{"Answer" : "Don’t use the CICD pipeline tool.", "Score" : 1},
+					{"Answer" : "Sometimes, but not all delivery processes are automated using CICD pipeline tool.", "Score" : 2},
+					{"Answer" : "All delivery processes are managed using a CICD pipeline tool. ", "Score" : 5}
+					]
+			},
+			{
+				"title" : "Test Automation",
+				"QuestionText" : "Do you use automation for testing? ",
+				"Answers" : [
+					{"Answer" : "No, only manual testing.", "Score" : 1},
+					{"Answer" : "Automated unit testing.", "Score" : 2},
+					{"Answer" : "Automated functional testing and unit testing.", "Score" : 4},
+					{"Answer" : "Fully automated testing including unit test, integration test, functional test and performance tests.", "Score" : 5}
+					]
+			}
+		]
+	},
+	{
+		"SectionName" : "Deployment Infrastructure",
+		"Questions" : [
+			{
+				"title" : "Configuration Automation",
+				"QuestionText" : "Do you employ tool-based automation for configuration management? ",
+				"Answers" : [
+					{"Answer" : "No, only manual configuration", "Score" : 2},
+					{"Answer" : "Yes, fully automated configuration management. ", "Score" : 5}
+					]
+			},
+			{
+				"title" : "Containerization",
+				"QuestionText" : "Do you use containers in your software development stages? ",
+				"Answers" : [
+					{"Answer" : "No", "Score" : 1},
+					{"Answer" : "Use containers in some stages.", "Score" : 2},
+					{"Answer" : "Use containers to the full.", "Score" : 5}
+					]
+			}
+		]
+	},
+	{
+		"SectionName" : "Performance Management",
+		"Questions" : [
+			{
+				"title" : "Continuous Monitoring",
+				"QuestionText" : "Do you follow Continuous monitoring of the deployed software and set up alerts for potential issues using any tools? ",
+				"Answers" : [
+					{"Answer" : "No monitoring.", "Score" : 1},
+					{"Answer" : "Monitor manually.", "Score" : 2},
+					{"Answer" : "Yes, use monitoring and alerting tool.", "Score" : 5}
+					]
+			},
+			{
+				"title" : "Mean Time to Recover",
+				"QuestionText" : "What is the typical duration for restoring your service when there is a service incident or user-impacting defect (MTTR)? ",
+				"Answers" : [
+					{"Answer" : "Six months or more.", "Score" : 1},
+					{"Answer" : "One month ", "Score" : 2},
+					{"Answer" : "One week", "Score" : 3},
+					{"Answer" : "One day", "Score" : 4},
+					{"Answer" : "One hour", "Score" : 5}
+				]
+			}
+		]
+	}
+]

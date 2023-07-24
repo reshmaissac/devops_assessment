@@ -1,0 +1,15 @@
+.start-column {
+			padding: 150px;
+			/* Add your desired padding value here */
+			background-color: #f0f0f0;
+			/* Add additional styles as necessary */
+			border-radius: 5px;
+		}
+#startButton {
+    margin-top: 20px;
+}
+
+label {
+    width: 120px;
+    margin-bottom: 5px;
+}
