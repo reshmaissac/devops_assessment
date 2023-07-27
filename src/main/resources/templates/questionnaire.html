@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>DevOps Assessment Questionnaire</title>
+</head>
+
+<body>
+	<h1>DevOps Assessment Questionnaire</h1>
+	<form id="questionnaireForm" action="javascript:void(0);">
+		<div id="questionnaireContainer"></div>
+		<button type="button" onclick="submitAssessment()">Submit</button>
+		<p id="errorText" style="color: red; display: none;">Please answer all questions.</p>
+	</form>
+	<!-- Hidden input fields to store the email value -->
+	<input type="hidden" id="emailInput" value="[[${email}]]" th:value="${email}" />
+
+	<script>
+		//***********check for null********make questions mandatory to answer*******.
+		// Function to fetch JSON data and generate the questionnaire form
+		async function generateQuestionnaire() {
+			const response = await fetch('questionnaire.json');
+			const jsonData = await response.json();
+			const container = document.getElementById('questionnaireContainer');
+
+			jsonData.forEach(section => {
+				const sectionDiv = document.createElement('div');
+				sectionDiv.id = 'section_' + section.SectionName.replace(/\s/g, '_');
+				const sectionHeader = document.createElement('h2');
+				sectionHeader.textContent = section.SectionName;
+				sectionDiv.appendChild(sectionHeader);
+
+				section.Questions.forEach(question => {
+					const questionDiv = document.createElement('div');
+					questionDiv.id = 'question_' + question.title.replace(/\s/g, '_');
+
+					const questionTitle = document.createElement('p');
+					questionTitle.className = 'question-title';
+					questionTitle.textContent = question.title;
+					questionDiv.appendChild(questionTitle);
+
+					const questionText = document.createElement('p');
+					questionText.className = 'question-text';
+					questionText.textContent = question.QuestionText;
+					questionDiv.appendChild(questionText);
+
+					question.Answers.forEach(answer => {
+						const radioInput = document.createElement('input');
+						radioInput.type = 'radio';
+						radioInput.name = 'answer_' + question.title.replace(/\s/g, '_');
+						radioInput.value = answer.Score;
+						questionDiv.appendChild(radioInput);
+
+						const answerLabel = document.createElement('label');
+						answerLabel.textContent = answer.Answer;
+						questionDiv.appendChild(answerLabel);
+
+						questionDiv.appendChild(document.createElement('br'));
+					});
+
+					sectionDiv.appendChild(questionDiv);
+				});
+
+				container.appendChild(sectionDiv);
+			});
+		}
+
+		// Call the function to generate the questionnaire on page load
+		generateQuestionnaire();
+
+		function isQuestionnaireValid() {
+			const sections = document.querySelectorAll('[id^="section_"]');
+
+			for (const section of sections) {
+				const questions = section.querySelectorAll('[id^="question_"]');
+				let hasCheckedAnswer = false;
+
+				for (const question of questions) {
+					const radioInput = question.querySelector('input[type="radio"]:checked');
+					if (radioInput) {
+						hasCheckedAnswer = true;
+						//break; // Break the loop if any question has a checked answer
+					} else {
+						hasCheckedAnswer = false;
+					}
+				}
+
+				if (!hasCheckedAnswer) {
+					return false; // Return false if any section has an unanswered question
+				}
+			}
+
+			return true; // Return true if all questions are answered
+		}
+		// Submit the questionnaire response to backend
+		function submitAssessment() {
+			// Validate if all questions are answered before submission
+			const isFormValid = isQuestionnaireValid();
+			const errorText = document.getElementById('errorText');
+			errorText.style.display = isFormValid ? 'none' : 'block';
+
+			if (!isFormValid) {
+				const errorText = document.getElementById('errorText');
+				errorText.style.display = 'block';
+				return; // Don't proceed with submission if there are unanswered questions
+			}
+			// Access the email attribute set in the controller
+			const emailInput = document.getElementById('emailInput');
+			const email = emailInput.value;
+
+			const sectionElements = document.querySelectorAll('[id^="section_"]');
+			const response = {
+				email: email,
+				sections: [],
+			};
+
+			sectionElements.forEach(sectionElement => {
+				const sectionData = {
+					sectionName: sectionElement.querySelector('h2').textContent,
+					questions: [],
+				};
+
+				const questionElements = sectionElement.querySelectorAll('[id^="question_"]');
+				questionElements.forEach(questionElement => {
+					const title = questionElement.querySelector('p[class="question-title"]').textContent;
+					const questionText = questionElement.querySelector('p[class="question-text"]').textContent;
+					const radioInput = questionElement.querySelector('input[type="radio"]:checked');
+
+					const answerText = radioInput ? radioInput.nextElementSibling.textContent : '';
+					const answerScore = radioInput ? parseInt(radioInput.value) : 0;
+
+					sectionData.questions.push({
+						title: title,
+						questionText: questionText,
+						answerText: answerText,
+						answerScore: answerScore,
+					});
+				});
+
+				response.sections.push(sectionData);
+			});
+
+			// Submit the JSON data to the server
+			fetch('/submit', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(response),
+			})
+				.then(response => {
+					if (response.ok) {
+						// Handle success, e.g., show a success message or redirect to a thank you page.
+						// Parse the response JSON to get the response ID
+						response.json().then(data => {
+							const responseId = data.responseId;
+							// Redirect to the results page with the response ID
+							window.location.href = "/results?responseId=" + responseId;
+						});
+					} else {
+						// Handle errors if needed.
+						console.error('Error submitting response:', response);
+					}
+				})
+				.catch(error => {
+					console.error('Error submitting assessment:', error);
+				});
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+    <h1>DevOps Capability Check</h1>
+    <h2>Your Results</h2>
+
+    <!-- Display the questionnaire response data if available -->
+    <div th:if="${response}">
+        <!-- Add code to display response details here -->
+        <p>Email: <span th:text="${response.email}">Email not available</span></p>
+        <!-- Add more code to display other response details -->
+
+        <!-- Progress bar -->
+        <div>
+            <div class="progress-bar">
+                <div 
+                     th:style="'width:' + ${response.maturityPercent} + '%'"
+                     th:class="'progress-bar-fill ' + ${response.maturityLevel.name().toLowerCase()}">
+                </div>
+            </div>
+        </div>
+
+        <!-- Display the percentage and maturity level -->
+        <p>Maturity Percentage: <span th:text="${response.maturityPercent} + '%'"></span></p>
+        <p>Maturity Level: <span th:text="${response.maturityLevel.name()}"></span></p>
+    </div>
+
+    <div th:unless="${response}">
+        <p>No matching response found.</p>
+        <!-- You can add a link to redirect to the home page or a different page here -->
+        <a href="/">Back to Home</a>
+    </div>
+</body>
+</html>
