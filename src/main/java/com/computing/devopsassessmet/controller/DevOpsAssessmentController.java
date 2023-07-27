@@ -34,7 +34,6 @@ public class DevOpsAssessmentController {
 	@PostMapping("/questionnaire")
 	public String showQuestionnairePage(@RequestParam String email, Model model) {
 		model.addAttribute("email", email);
-		System.out.println(email);
 		return "questionnaire";
 	}
 

@@ -82,14 +82,13 @@ public class DevOpsAssessmentService {
 	}
 
 	private List<String> findGapAreas(QuestionnaireResponse response) {
-		List<Section> gapSections = response.getSections().stream().filter(section -> section.getSectionScorePercent() == response.getSections()
-				.stream()
-				.mapToDouble(Section::getSectionScorePercent)
-				.min()
-				.orElse(0.0))
-		.collect(Collectors.toList());
+		List<Section> gapSections = response.getSections().stream()
+	            .sorted(Comparator.comparingDouble(Section::getSectionScorePercent))
+	            .limit(2)
+	            .collect(Collectors.toList());
 		
 		List<String> gapAreas = gapSections.stream().flatMap(section -> section.getQuestions().stream())
+				.filter(questionLower -> questionLower.getAnswerScore() < 4)
 				.map(question -> question.getTitle()).collect(Collectors.toList());
 		return gapAreas;
 	}

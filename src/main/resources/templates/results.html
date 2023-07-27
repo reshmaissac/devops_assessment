@@ -27,6 +27,14 @@
         <!-- Display the percentage and maturity level -->
         <p>Maturity Percentage: <span th:text="${response.maturityPercent} + '%'"></span></p>
         <p>Maturity Level: <span th:text="${response.maturityLevel.name()}"></span></p>
+        
+        <!-- Display gap areas -->
+        <div th:if="${response.gapAreas}">
+            <h3>Gap Areas:</h3>
+            <ul>
+                <li th:each="gapArea : ${response.gapAreas}" th:text="${gapArea}"></li>
+            </ul>
+        </div>
     </div>
 
     <div th:unless="${response}">
