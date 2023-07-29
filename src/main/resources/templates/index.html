@@ -9,24 +9,18 @@
 </head>
 
 <body>
-	<!-- NAVBAR -->
-	<nav class="navbar navbar-expand
-				navbar-dark bg-success">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="./">
-				DevOps Capability Check</a>
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-		</div>
-	</nav>
+	<!-- Header -->
+    <div th:replace="header :: header"></div>
+    
+	
 
 	<!-- ARTICLE -->
 	<div class="container mt-5">
 		<div class="row">
 
 			<div class="col-sm-8">
-				<h2>Welcome to the DevOps Capability Check Web Application!</h2>
-				<h5>Created on 20 Jan 2022</h5>
+				<h2>Welcome to the DevOps Capability Check Application!</h2>
+				<h5>Created on 20 July 2023</h5>
 				<p>
 					Our DevOps Capability Check is a user-friendly and efficient tool designed to assess your team's
 					DevOps practices and maturity.
@@ -44,7 +38,7 @@
 						Identify strengths and pinpoint areas that need improvement to enhance your software delivery
 						efficiency.</li>
 					<li>Practical Recommendations: Receive practical and actionable recommendations to optimize your
-						CI/CD pipeline and automation processes.
+						software delivery processes.
 						We aim to help you achieve faster, more reliable software releases.</li>
 					<li>Personalized Results: Upon completion of the assessment, you'll receive a personalized report
 						outlining your team's strengths, areas for improvement,
@@ -53,9 +47,7 @@
 						and keep on top of your DevOps goals.</li>
 				</ul>
 				<p>
-					Strat now to take the first step towards optimizing your software delivery with the DevOps
-					Capability Check Web
-					Application. Happy assessing!
+					Strat now!
 				</p>
 
 
@@ -85,11 +77,14 @@
 
 
 		</div>
-	</sdiv>
+	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js">
 	</script>
 
 	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+	
+	 <!-- Footer -->
+    <div th:replace="footer :: footer"></div>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 package com.computing.devopsassessmet.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,17 +39,17 @@ public class DevOpsAssessmentController {
 	}
 
 	@PostMapping("/submit")
-	public ResponseEntity<Map<String, String>> submitAssessment(@RequestBody QuestionnaireResponse response, Model model) {
+	public ResponseEntity<Map<String, String>> submitAssessment(@RequestBody QuestionnaireResponse response,
+			Model model) {
 
 		assessmentService.saveQuestionnaireResponse(response);
 		model.addAttribute("response", response);
-		
-		
+
 		Map<String, String> responseData = new HashMap<>();
 		responseData.put("message", "Form submitted successfully");
 		responseData.put("responseId", response.getId());
-		
-		return ResponseEntity.ok(responseData); 
+
+		return ResponseEntity.ok(responseData);
 
 	}
 
@@ -58,9 +59,19 @@ public class DevOpsAssessmentController {
 		QuestionnaireResponse response = assessmentService.getQuestionnaireResponse(responseId);
 
 		// Add the QuestionnaireResponse to the model
+		model.addAttribute("email", response.getEmail());
 		model.addAttribute("response", response);
 
 		return "results"; // Return the view name "results" along with the model attributes.
+	}
+
+	@GetMapping("/trackProgress")
+	public String track(@RequestParam("email") String emailId, Model model) {
+
+		List<QuestionnaireResponse> responseByEmail = assessmentService.findByEmail(emailId);
+		model.addAttribute("assessmentHistory", responseByEmail);
+		return "track";
+
 	}
 
 }

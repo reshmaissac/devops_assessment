@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>DevOps Assessment</title>
+
+</head>
+
+<body>
+
+	<header th:fragment="header">
+		<!-- NAVBAR -->
+		<nav class="navbar navbar-expand
+				navbar-dark bg-success">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="./">
+					DevOps Capability Check</a>
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<ul class="navbar-nav me-1 mb-2 mb-lg-0 ms-lg-4">
+
+
+						<!-- This div will be initially hidden -->
+						<div id="trackMenu" style="display: none;">
+							
+								<li class="nav-item">
+									<a class="nav-link" th:href="@{/trackProgress(email=${email})}" th:text="'Track Progress'"></a>
+
+								</li>
+								<!-- Add more menu items as needed -->
+							
+						</div>
+
+
+
+					</ul>
+
+			</div>
+		</nav>
+	</header>
+
+
+
+</body>
+
+</html>

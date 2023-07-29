@@ -12,39 +12,127 @@
 }
 
 label {
-	width: 120px;
+
 	margin-bottom: 5px;
 }
 
 /* CSS for the progress bar */
-        .progress-bar {
-            width: 100%;
-            height: 30px;
-            background-color: #f1f1f1;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            position: relative;
-        }
+.progress-bar {
+	height: 30px;
+	border-radius: 20px;
+	overflow: hidden;
+}
 
-        .progress-bar-fill {
-            height: 100%;
-            border-radius: 5px;
-            
-        }
+.progress-bar-fill {
+	height: 100%;
+	font-weight: bold;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 20px;
+	transition: width 0.3s ease-in-out;
 
-        /* Style the progress bar based on maturity level */
-        .low {
-            background-color: red;
-        }
+}
 
-        .medium {
-            background-color: orange;
-        }
+/* Style the progress bar based on maturity level */
+.low {
+	background-color: #FF6F6F;
+}
 
-        .high {
-            background-color: lightgreen;
-        }
+.medium {
+	background-color: #FFCA5D;
+}
 
-        .elite {
-            background-color: green;
-        }
+.high {
+	background-color: #80C98F;
+}
+
+.elite {
+	background-color: rgb(91, 162, 247);
+}
+
+.my-footer {
+	background-color: #f2f2f2;
+	/* Replace this with the desired background color */
+	padding: 10px;
+	/* Add padding for better appearance, adjust as needed */
+	text-align: center;
+	/* Optional: Align the content in the center */
+}
+
+#questionnaireForm {
+	padding: 20px;
+}
+
+/* Style for the clickable area */
+.clickable-area {
+	cursor: pointer;
+	padding-right: 5px;
+}
+
+/* Style for the expansion indicator (+ or -) */
+.expansion-indicator::after {
+	content: "+";
+	right: 30px;
+	display: inline-block;
+	margin-right: 5px;
+}
+
+/* Style for the expanded state of the expansion indicator */
+.expanded .expansion-indicator::after {
+	content: "-";
+}
+
+/* Style for the sublist when expanded */
+.sublist {
+	display: none;
+	padding-left: 20px;
+	list-style: none;
+}
+
+/* Style for the sublist items */
+.sublist li {
+	padding-top: 5px;
+}
+
+/* Style for the sublist when expanded */
+.sublist.expanded {
+	display: block;
+}
+
+/* Style for each item with background color */
+.list-item {
+	background-color: #f0f0f0;
+	/* Replace with your desired background color */
+	padding: 5px;
+	margin-bottom: 5px;
+	border-radius: 5px;
+}
+
+/* Style for the sublist */
+.sublist {
+	background-color: #f9f9f9;
+	/* Replace with your desired lighter background color */
+	padding: 5px;
+	border-radius: 5px;
+	margin-top: 5px;
+}
+
+#results-panel {
+	padding: 10px;
+}
+
+#maturity-panel {
+	margin-top: 20px;
+	border: 1px solid #ddd;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	background-color: #f9f9f9;
+}
+
+.badge {
+	color: #000;
+	/* Change the color to your preferred text color */
+}
