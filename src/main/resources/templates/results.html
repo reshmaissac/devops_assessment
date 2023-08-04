@@ -77,8 +77,47 @@
 						<span class="clickable-area expansion-indicator" th:text="${gapArea}"
 							th:data-index="${iterStat.index}"></span>
 						<ul class="sublist" th:id="'sublist' + ${iterStat.index}" style="display: none;">
-							<li>Details for Gap Area: <span th:text="${gapArea}"></span></li>
-							<!-- Add more details here -->
+							<li>Use the below tutorials to bridge the gaps.</span></li>
+
+							<li th:each="tutorial : ${tutorials}" th:if="${tutorial.area == gapArea}">
+								<div class="card">
+									<div class="card-body">
+										<!-- Display the details from the matched tutorial -->
+										<p class="card-title" th:text="${tutorial.description}">
+
+										</p>
+
+									</div>
+								</div>
+							</li>
+
+							<!-- Use another loop to display the URLs inside tutorial.tutorialItems -->
+							<li th:each="tutorial : ${tutorials}" th:if="${tutorial.area == gapArea}">
+								<div class="card">
+									<div class="card-body">
+										<ul>
+											<li th:each="tutorialItem : ${tutorial.tutorialItems}">
+												<p class="card-text" th:text="${tutorialItem.title}"></p>
+
+
+												<div th:if="${tutorialItem.urls}">
+													<div class="image-container" th:each="url : ${tutorialItem.urls}">
+
+
+														<a th:href="${url.urlLink}" target="_blank">
+															<!-- Replace 'path-to-your-image' with the actual path to the image -->
+															<img th:src="@{${url.imageUrl}}" alt="Image Link"
+																/>
+														</a>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+
+
 						</ul>
 					</li>
 				</ul>
@@ -108,19 +147,20 @@
 			});
 		</script>
 
-		 <script th:inline="javascript">
-        const emailId = /*[[${response.email}]]*/ null;
+		<script th:inline="javascript">
+			const emailId = /*[[${response.email}]]*/ null;
 
-        if (emailId) {
-            // Display the track menu by showing the hidden div
-            const trackMenu = document.getElementById('trackMenu');
-            trackMenu.style.display = 'block';
-            // Set the emailId in the span element inside the track menu
-            const emailSpan = document.getElementById('emailSpan');
-            if (emailSpan) {
-                emailSpan.textContent = emailId;
-            }
-        }
-    </script></body>
+			if (emailId) {
+				// Display the track menu by showing the hidden div
+				const trackMenu = document.getElementById('trackMenu');
+				trackMenu.style.display = 'block';
+				// Set the emailId in the span element inside the track menu
+				const emailSpan = document.getElementById('emailSpan');
+				if (emailSpan) {
+					emailSpan.textContent = emailId;
+				}
+			}
+		</script>
+</body>
 
 </html>

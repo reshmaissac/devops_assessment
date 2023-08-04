@@ -136,3 +136,23 @@ label {
 	color: #000;
 	/* Change the color to your preferred text color */
 }
+.no-bullets {
+    list-style-type: none;
+}
+
+.image-container {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #ddd; /* Add a 1px solid border */
+    border-radius: 5px; /* Add some border radius for rounded corners */
+    margin: 10px; /* Add margin to create spacing between images */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+.image-container img {
+    object-fit: cover;
+    width: 150px;
+    height: 100px;
+    border-radius: 5px; /* Match the border radius for a consistent look */
+}
+

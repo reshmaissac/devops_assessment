@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tutorial File Upload</title>
+</head>
+<body>
+    <h1>Upload JSON File</h1>
+
+    <!-- Check if the value from the controller model "isAdmin" is true -->
+    <div th:if="${isAdmin}">
+        <form th:action="@{/uploadTutorial}" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" />
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+
+    <!-- Display authentication error if "isAdmin" is not true -->
+    <div th:unless="${isAdmin}">
+        <p>Authentication error: You are not authorized to access this page.</p>
+    </div>
+</body>
+</html>

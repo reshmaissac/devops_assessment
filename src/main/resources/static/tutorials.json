@@ -1,0 +1,195 @@
+[
+	{
+		"area": "CICD Pipeline",
+		"description": "Continuous Integration and Continuous Deployment (CI/CD) Pipeline facilitates the continuous integration of code changes into a shared repository and the continuous deployment of application updates to production environments, ensuring rapid and reliable software delivery.",
+		"tutorialItems": [
+			{
+				"title": "Jenkins",
+				"url": [{
+					
+					"urlLink":"https://www.jenkins.io/doc/book/pipeline/getting-started/",
+					"imageUrl":"https://posts.lacework.com/wp-content/uploads/2020/08/up-and-running-with-lacework-and-jenkins.png"
+				}]
+			},
+			{
+				"title": "GitLab CI/CD",
+				"url": [{
+					
+					"urlLink":"https://www.tutorialspoint.com/gitlab/index.htm",
+					"imageUrl":"https://about.gitlab.com/nuxt-images/open-graph/open-graph-gitlab.png"
+				}]
+			},
+			{
+				"title": "Azure DevOps Pipeline",
+				"url": [
+					{
+					
+					"urlLink":"https://learn.microsoft.com/en-gb/azure/devops/pipelines/create-first-pipeline?view=azure-devops&tabs=java%2Ctfs-2018-2%2Cbrowser",
+					"imageUrl":"https://i0.wp.com/50.19.181.227/wp-content/uploads/2020/12/azure_pipelines-e1607917833648.png?fit=700%2C373&ssl=1"
+				}
+					
+				]
+			},
+			{
+				"title": "AWS CodePipeline",
+				"url": [
+					{
+					
+					"urlLink":"https://docs.aws.amazon.com/codepipeline/latest/userguide/tutorials-four-stage-pipeline.html",
+					"imageUrl":"https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://s3.amazonaws.com/coursera-course-photos/28/9c48b6e61246d283c3c38ad4a55307/Image.png?auto=format%2Ccompress&dpr=1&w=330&h=330&fit=fill&q=25"
+				}
+					
+				]
+			}
+		]
+	},
+	{
+		"area": "Test Automation",
+		"description": "DevOps Test Automation is the practice of automating software testing processes. It can be added within the DevOps pipeline to enhance efficiency, speed, and reliability of software delivery.",
+		"tutorialItems": [
+			{
+				"title": "Selenium",
+				"url": [
+					{
+					
+					"urlLink":"https://www.selenium.dev/documentation/webdriver/getting_started/",
+					"imageUrl":"https://www.bugraptors.com/blog/public/blog_images/why-we-choose-selenium-webdriver-over-selenium-ide-dyvpg-1000x700.jpg"
+				}
+					
+				]
+			},
+			{
+				"title": "JUnit",
+				"url": [
+					{
+					
+					"urlLink":"https://www.tutorialspoint.com/junit/junit_overview.htm",
+					"imageUrl":"https://www.simplilearn.com/ice9/free_resources_article_thumb/Download_JUnit.png"
+				}
+					
+				]
+			},
+			{
+				"title": "SonarQube",
+				"url": [
+					{
+					
+					"urlLink":"https://www.javatpoint.com/sonarqube-in-java",
+					"imageUrl":"https://www.aviator.co/blog/wp-content/uploads/2023/01/sonarqube.png"
+				}
+					
+				]
+			}
+		]
+	},
+	{
+		"area": "Configuration Automation",
+		"description": "DevOps Configuration Automation is the practice of automating the setup and management of infrastructure and software configurations to streamline and enhance the software development and deployment process.",
+		"tutorialItems": [
+			{
+				"title": "Azure Resource Manager (ARM)",
+				"url": [
+					{
+					
+					"urlLink":"https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/template-tutorial-create-first-template?source=recommendations&tabs=azure-powershell",
+					"imageUrl":"https://www.mshowto.org/images/articles/2023/02/azure-resource-manager.png"
+				}
+					
+				]
+			},
+			{
+				"title": "Google Cloud Deployment Manager",
+				"url": [
+					{
+					
+					"urlLink":"https://cloud.google.com/deployment-manager/docs",
+					"imageUrl":"https://d1tlzifd8jdoy4.cloudfront.net/wp-content/uploads/2020/09/gcp-eyecatch-deployment-manager_1200x630.png"
+				}
+					
+				]
+			},
+			{
+				"title": "Ansible",
+				"url": [
+					{
+					
+					"urlLink":"https://www.tutorialspoint.com/ansible/index.htm",
+					"imageUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Ansible_logo.svg/1200px-Ansible_logo.svg.png"
+				}
+					
+				]
+			}
+		]
+	},
+	{
+		"area": "Containerization",
+		"description": "Containerization is the practice of using containers to package, deploy, and manage software applications and their dependencies consistently across various environments, streamlining development, testing, and production workflows.",
+		"tutorialItems": [
+			{
+				"title": "Docker",
+				"url": [
+					{
+					
+					"urlLink":"https://www.tutorialspoint.com/docker/index.htm",
+					"imageUrl":"https://d1.awsstatic.com/acs/characters/Logos/Docker-Logo_Horizontel_279x131.b8a5c41e56b77706656d61080f6a0217a3ba356d.png"
+				}
+					
+				]
+			},
+			{
+				"title": "Kubernetes",
+				"url": [
+					{
+					
+					"urlLink":"https://www.tutorialspoint.com/kubernetes/index.htm",
+					"imageUrl":"https://i0.wp.com/softwareengineeringdaily.com/wp-content/uploads/2019/01/Kubernetes_New.png?resize=730%2C389&ssl=1"
+				}
+					
+				]
+			}
+		]
+	},
+	{
+		"area": "Continuous Monitoring",
+		"description": "Continuous Monitoring is the ongoing process of systematically observing and evaluating systems, applications, or environments to ensure their security, performance, and compliance.",
+		"tutorialItems": [
+			{
+				"title": "Nagios",
+				"url": [
+					{
+					
+					"urlLink":"https://www.tutorialspoint.com/nagios/index.htm",
+					"imageUrl":"https://cdn.icon-icons.com/icons2/2699/PNG/512/nagios_logo_icon_169936.png"
+				}
+					
+				]
+			},
+			{
+				"title": "Grafana",
+				"url": [
+					{
+					
+					"urlLink":"https://grafana.com/tutorials/grafana-fundamentals/",
+					"imageUrl":"https://www.datanami.com/wp-content/uploads/2023/06/grafana-logo.png"
+				}
+					
+				]
+			}
+		]
+	},
+	{
+		"area": "Deployment Frequency",
+		"description": "Deployment Frequency can be increased by following CICD processes, test automation, continuous monitoring etc"
+		
+	},
+	{
+		"area": "MTTR",
+		"description": "MTTR can be considerably reduced by automating deployments, automating testing, source code management and continuous monitoring"
+		
+	},
+	{
+		"area": "CICD Automation",
+		"description": "CI/CD is a software development approach that automates the process of integrating code changes into a shared repository, testing them, and deploying them to production environments, enabling frequent and reliable software releases."
+		
+	}
+]
