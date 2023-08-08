@@ -33,6 +33,9 @@ public class AdminService {
 
 			// Read the JSON data from the uploaded file
 			 String jsonDataString = new String(file.getBytes(), StandardCharsets.UTF_8);
+			 if (!jsonDataString.contains("area") || !jsonDataString.contains("description")) {
+				 return "Invalid json format for 'Tutorial' model. Please upload correct file.";
+			 }
 
 			// Deserialize the JSON data into the entity class
 			List<Tutorial> tutorials = objectMapper.readValue(jsonDataString, new TypeReference<List<Tutorial>>() {

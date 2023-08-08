@@ -17,7 +17,7 @@ public enum GapArea {
 	
 	DEPLOYMENT_FREQUENCY("Deployment Frequency"),
 	
-	MTTR("MTTR"),
+	MTTR("Mean Time to Recover"),
 	
 	CICD_AUTOMATION("CICD Automation");
 	

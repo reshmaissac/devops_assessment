@@ -1,13 +1,20 @@
 .start-column {
-	padding: 150px;
+	padding: 75px;
 	/* Add your desired padding value here */
 	background-color: #f0f0f0;
+	background-image: url("https://d585tldpucybw.cloudfront.net/sfimages/default-source/productsimages/teststudio/continuous-integration-testing-illustration.svg");
+	background-size: 200px;
+	background-repeat: no-repeat;
+	background-position: center;
 	/* Add additional styles as necessary */
 	border-radius: 5px;
+	align-items: center;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 
 #startButton {
-	margin-top: 20px;
+	margin-top: 10px;
 	width: max-content;
 }
 
@@ -64,6 +71,7 @@ label {
 #questionnaireForm {
 	padding: 20px;
 }
+
 
 /* Style for the clickable area */
 .clickable-area {
@@ -136,23 +144,174 @@ label {
 	color: #000;
 	/* Change the color to your preferred text color */
 }
+
 .no-bullets {
-    list-style-type: none;
+	list-style-type: none;
 }
 
 .image-container {
-    display: inline-block;
-    padding: 10px;
-    border: 1px solid #ddd; /* Add a 1px solid border */
-    border-radius: 5px; /* Add some border radius for rounded corners */
-    margin: 10px; /* Add margin to create spacing between images */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+	display: inline-block;
+	padding: 10px;
+	border: 1px solid #ddd;
+	/* Add a 1px solid border */
+	border-radius: 5px;
+	/* Add some border radius for rounded corners */
+	margin: 10px;
+	/* Add margin to create spacing between images */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	/* Add a subtle box shadow */
 }
 
 .image-container img {
-    object-fit: cover;
-    width: 150px;
-    height: 100px;
-    border-radius: 5px; /* Match the border radius for a consistent look */
+	object-fit: cover;
+	width: 150px;
+	height: 100px;
+	border-radius: 5px;
+	/* Match the border radius for a consistent look */
 }
 
+.content-section {
+	background-color: #f9f9f9;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.feature-list li {
+	list-style: none;
+	font-size: 15px;
+	padding-left: 1.5em;
+	position: relative;
+}
+
+.feature-list li::before {
+	content: "\2022";
+	position: absolute;
+	left: 0;
+	top: 0.4em;
+	color: #007bff;
+}
+
+h2 {
+
+	font-weight: bold;
+	font-size: 26px;
+	margin-bottom: 10px;
+}
+
+h3 {
+
+	font-weight: bold;
+	font-size: 22px;
+	margin-bottom: 5px;
+}
+
+p {
+	font-size: 15px;
+	line-height: 1.6;
+	margin-bottom: 20px;
+}
+
+.start-assessment-btn {
+	background-color: #007bff;
+	margin-left: 40px;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.start-assessment-btn:hover {
+	background-color: #0056b3;
+}
+
+.devops-img {
+
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: bottom;
+	height: 300px;
+	/* Set a suitable height to display the background image */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.question-title {
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+  
+
+        .question-text {
+            margin-bottom: 20px;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+.jumbotron {
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 30px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.upload-form {
+	margin-top: 20px;
+}
+
+.upload-button {
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+	background-color: #0056b3;
+}
+
+.auth-error {
+	color: #dc3545;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+
+/*Card styling*/
+
+/* Custom CSS for styling the cards */
+.questionnaire-card {
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	margin-bottom: 20px;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	transition: transform 0.2s, box-shadow 0.2s;
+}
+
+
+.card-header {
+	background-color: rgb(237, 239, 241);
+	padding: 10px 15px;
+	font-weight: bold;
+}
+
+.questionnaire-card-body {
+	padding: 15px;
+}
+
+ .question {
+            border: 1px solid #edf0f5;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }

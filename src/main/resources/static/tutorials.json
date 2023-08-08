@@ -183,7 +183,7 @@
 		
 	},
 	{
-		"area": "MTTR",
+		"area": "Mean Time to Recover",
 		"description": "MTTR can be considerably reduced by automating deployments, automating testing, source code management and continuous monitoring"
 		
 	},

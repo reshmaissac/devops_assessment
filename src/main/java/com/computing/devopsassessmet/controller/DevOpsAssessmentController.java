@@ -66,12 +66,17 @@ public class DevOpsAssessmentController {
 	public String showResultsPage(@RequestParam("responseId") String responseId, Model model) {
 		// Fetch the QuestionnaireResponse data from the backend (if needed)
 		QuestionnaireResponse response = assessmentService.getQuestionnaireResponse(responseId);
-		List<Tutorial> tutorials = assessmentService.getTutorials(response.getGapAreas());
-
-		// Add the QuestionnaireResponse to the model
-		model.addAttribute("email", response.getEmail());
 		model.addAttribute("response", response);
-		model.addAttribute("tutorials", tutorials);
+		if(response != null) {
+			
+			List<Tutorial> tutorials = assessmentService.getTutorials(response.getGapAreas());
+			
+			// Add the QuestionnaireResponse to the model
+			model.addAttribute("email", response.getEmail());
+			model.addAttribute("tutorials", tutorials);
+		} else {
+			model.addAttribute("error", "no results found");
+		}
 
 		return "results"; // Return the view name "results" along with the model attributes.
 	}

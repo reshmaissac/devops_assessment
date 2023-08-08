@@ -8,106 +8,118 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<!-- Bootstrap JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
 	<link th:href="@{/css/styles.css}" rel="stylesheet">
+
+	<style>
+		body {
+			padding-top: 20px;
+		}
+
+		.result-panel {
+			padding: 50px;
+			border: 1px solid #ced4da;
+			border-radius: 8px;
+			background-color: #f8f9fa;
+			margin-bottom: 15px;
+		}
+
+		.maturity-progress {
+			margin-bottom: 20px;
+		}
+
+		.maturity-percent {
+			font-size: 18px;
+			font-weight: bold;
+		}
+
+		.gap-area-list {
+			padding: 10px;
+			border: 1px solid #ced4da;
+			border-radius: 8px;
+		}
+
+		.gap-area-list h5 {
+			margin-bottom: 15px;
+		}
+
+		.tutorial-card {
+			margin-bottom: 10px;
+		}
+
+		.tutorial-title {
+			font-size: 16px;
+			font-weight: bold;
+			margin-bottom: 5px;
+		}
+	</style>
 </head>
 
 <body>
 	<!-- Header -->
 	<div th:replace="header :: header"></div>
+	<!-- <div th:replace="header :: header"></div> -->
 
-	<h2>Your Results</h2>
 
+	<div class="container mt-4">
+		<h2 class="text-center">Your Results</h2>
+		<div class="result-panel" th:if="${response}">
 
-	<div id="results-panel" th:if="${response}">
+			<!-- Maturity Progress -->
+			<div class="maturity-progress">
+				<div class="progress">
+					<div class="progress-bar progress-bar-fill" th:style="'width:' + ${response.maturityPercent} + '%'"
+						th:class="'progress-bar-fill ' + ${response.maturityLevel.name().toLowerCase()}">
+						<span class="maturity-percent" th:text="${response.maturityPercent} + '%'"></span>
+					</div>
+				</div>
+				<div class="d-flex justify-content-between align-items-center mt-2">
 
-		<!-- Add more code to display other response details -->
-		<div id="maturity-panel">
-			<!-- Progress bar -->
-
-			<!--			<div class="progress-bar">-->
-			<!--				<div th:style="'width:' + ${response.maturityPercent} + '%'"-->
-			<!--					th:class="'progress-bar-fill ' + ${response.maturityLevel.name().toLowerCase()}">-->
-			<!--				</div>-->
-			<!--			</div>-->
-
-			<!-- Progress bar -->
-			<div class="progress">
-				<div class="progress-bar progress-bar-fill" th:style="'width:' + ${response.maturityPercent} + '%'"
-					th:class="'progress-bar-fill ' + ${response.maturityLevel.name().toLowerCase()}">
-					<span th:text="${response.maturityPercent} + '%'"></span>
+					<div class="p-2">
+						<h6 class="mb-0">Maturity Level:</h6>
+						<span class="badge badge-success" th:text="${response.maturityLevel.name()}">Maturity
+							Level</span>
+					</div>
+					<div class="p-2">
+						<h6 class="mb-0">Maturity Percentage:</h6>
+						<span class="badge badge-primary" th:text="${response.maturityPercent} + '%'">Maturity
+							Percent</span>
+					</div>
 				</div>
 			</div>
-
-
-
-
-
-			<!-- Compact and attractive display of Maturity Percentage and Level -->
-			<div class="d-flex justify-content-between align-items-center">
-				<div class="p-2">
-					<h6 class="mb-0">Maturity Percentage:</h6>
-					<span class="badge badge-primary" th:text="${response.maturityPercent} + '%'">Maturity
-						Percent</span>
-				</div>
-				<div class="p-2">
-					<h6 class="mb-0">Maturity Level:</h6>
-					<span class="badge badge-success" th:text="${response.maturityLevel.name()}">Maturity Level</span>
-				</div>
-			</div>
-
 		</div>
 
+		<!-- Gap Areas -->
+		<div class="gap-area-list card" th:if="${response != null and not #lists.isEmpty(response.gapAreas)}">
 
-		<!-- Display gap areas -->
-		<div class="card">
-			<h5 class="card-header">Whats Next? </h5>
+			<h5 class="card-header">What's Next?</h5>
 			<div class="card-body">
 				<h5 class="card-title">Focus on below areas</h5>
-				<p class="card-text">Below are your gap areas. Click to access specially selected online tutorials
-					that
-					help
-					implement DevOps tools and practices to bridge these gaps and improve your maturity level.
+				<p class="card-text">Below are your gap areas. Click to access specially selected online tutorials that
+					help implement DevOps tools and practices to bridge these gaps and improve your maturity level.
 					Implement them! Return for a reassessment to see your progress rise! </p>
 
-
-				<ul>
+				<ul class="list-unstyled">
 					<li th:each="gapArea, iterStat : ${response.gapAreas}" class="list-item">
 						<span class="clickable-area expansion-indicator" th:text="${gapArea}"
 							th:data-index="${iterStat.index}"></span>
 						<ul class="sublist" th:id="'sublist' + ${iterStat.index}" style="display: none;">
-							<li>Use the below tutorials to bridge the gaps.</span></li>
-
+							<h6>Recommendations:</h6>
+							<li>Use the below tutorials to bridge the gaps.</li>
 							<li th:each="tutorial : ${tutorials}" th:if="${tutorial.area == gapArea}">
-								<div class="card">
+								<div class="card tutorial-card">
 									<div class="card-body">
-										<!-- Display the details from the matched tutorial -->
-										<p class="card-title" th:text="${tutorial.description}">
-
-										</p>
-
-									</div>
-								</div>
-							</li>
-
-							<!-- Use another loop to display the URLs inside tutorial.tutorialItems -->
-							<li th:each="tutorial : ${tutorials}" th:if="${tutorial.area == gapArea}">
-								<div class="card">
-									<div class="card-body">
-										<ul>
+										<p class="tutorial-title" th:text="${tutorial.description}"></p>
+										<ul class="list-unstyled">
 											<li th:each="tutorialItem : ${tutorial.tutorialItems}">
 												<p class="card-text" th:text="${tutorialItem.title}"></p>
-
-
 												<div th:if="${tutorialItem.urls}">
 													<div class="image-container" th:each="url : ${tutorialItem.urls}">
-
-
 														<a th:href="${url.urlLink}" target="_blank">
 															<!-- Replace 'path-to-your-image' with the actual path to the image -->
-															<img th:src="@{${url.imageUrl}}" alt="Image Link"
-																/>
+															<img th:src="@{${url.imageUrl}}" alt="Image Link" />
 														</a>
 													</div>
 												</div>
@@ -116,38 +128,44 @@
 									</div>
 								</div>
 							</li>
-
-
 						</ul>
 					</li>
 				</ul>
-
-
 			</div>
 		</div>
 
 
 
+
 		<div th:unless="${response}">
-			<p>No matching response found.</p>
+			<p class="text-center">No matching response found.</p>
 			<!-- You can add a link to redirect to the home page or a different page here -->
-			<a href="/">Back to Home</a>
+			<div class="text-center">
+				<a href="/" class="btn btn-primary">Back to Home</a>
+			</div>
 		</div>
-		<!-- Footer -->
-		<div th:replace="footer :: footer"></div>
+	</div>
 
-		<!-- JavaScript to toggle details on click -->
-		<script th:inline="javascript">
-			$(document).ready(function () {
-				$('.clickable-area').click(function () {
-					const index = $(this).data('index');
-					$('#sublist' + index).toggle();
-					$(this).parent().toggleClass('expanded');
-				});
+
+	<!-- Footer -->
+	<div th:replace="footer :: footer"></div>
+
+	<!-- JavaScript to toggle details on click -->
+	<script th:inline="javascript">
+		$(document).ready(function () {
+			$('.clickable-area').click(function () {
+				const index = $(this).data('index');
+				$('#sublist' + index).toggle();
+				$(this).parent().toggleClass('expanded');
 			});
-		</script>
+		});
+	</script>
 
-		<script th:inline="javascript">
+	<script th:if="${response != null}" th:inline="javascript">
+		const response = /*[[${response}]]*/ null;
+
+		if (response) {
+
 			const emailId = /*[[${response.email}]]*/ null;
 
 			if (emailId) {
@@ -160,7 +178,8 @@
 					emailSpan.textContent = emailId;
 				}
 			}
-		</script>
+		}
+	</script>
 </body>
 
 </html>

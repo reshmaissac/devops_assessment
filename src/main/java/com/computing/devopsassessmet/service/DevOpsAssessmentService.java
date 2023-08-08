@@ -1,5 +1,6 @@
 package com.computing.devopsassessmet.service;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Comparator;
@@ -46,19 +47,23 @@ public class DevOpsAssessmentService {
 				* 5.0;
 
 		double maturityPercent = (totalScore / fullScore) * 100;
+		
+		 DecimalFormat decimalFormat = new DecimalFormat("#.##");
+		 String formattedValue = decimalFormat.format(maturityPercent);
+		 double formattedmaturityPercent = Double.parseDouble(formattedValue);
 
 		// Find MaturityLevel
-		Optional<MaturityLevel> maturityLevel = findMaturityLevel(maturityPercent);
+		Optional<MaturityLevel> maturityLevel = findMaturityLevel(formattedmaturityPercent);
 
 		// Find Gap Areas
 		List<String> gapAreas = findGapAreas(response);
 
 		response.setGapAreas(gapAreas);
 		response.setTotalScore(totalScore);
-		response.setMaturityPercent(maturityPercent);
+		response.setMaturityPercent(formattedmaturityPercent);
 		response.setMaturityLevel(maturityLevel.orElse(MaturityLevel.UNKNOWN));
 
-		String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(Calendar.getInstance().getTime());
+		String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
 		response.setTimestamp(timeStamp);
 
 		responseRepository.save(response);
@@ -71,32 +76,34 @@ public class DevOpsAssessmentService {
 	}
 
 	public List<Tutorial> getTutorials(List<String> gapAreas) {
- 
+
 		List<Tutorial> tutorials = tutorialRepository.findByAreaIn(gapAreas).orElse(null);
 
-		Tutorial cicdPipelineTutorial = tutorials.stream()
-				.filter(tutorial -> tutorial.getArea().equals(GapArea.CICD_PIPELINE.getTutorialArea())).findFirst()
-				.get();
+		Optional<Tutorial> cicdPipelineTutorial = tutorials.stream()
+				.filter(tutorial -> tutorial.getArea().equals(GapArea.CICD_PIPELINE.getTutorialArea())).findFirst();
 
 		// if gap area is CICD , add tutorials for CICD pipeline
-		String tutorialArea = GapArea.CICD_AUTOMATION.getTutorialArea(); 
+		String tutorialArea = GapArea.CICD_AUTOMATION.getTutorialArea();
 		System.out.println(tutorialArea);
-		Optional<Tutorial> optionalCICDTutorial = tutorials.stream()
-				.filter(tutorial -> tutorial.getArea().equals(tutorialArea)).findFirst(); 
-		if(optionalCICDTutorial.isPresent()) {
-			
-			optionalCICDTutorial.get().setTutorialItems(cicdPipelineTutorial.getTutorialItems()); 
-		}
 
-		// if gap area is MTTR or Deployment Frequency, add tutorials for Test
-		// automation, CICD pipeline, Monitoring
-		List<Tutorial> mttrOrDeployFreqTutorials = tutorials.stream()
-				.filter(tutorial -> tutorial.getArea()
-						.equals(GapArea.MTTR.getTutorialArea())
-								|| tutorial.getArea().equals(GapArea.DEPLOYMENT_FREQUENCY.getTutorialArea()))
-				.collect(Collectors.toList());
-			
-		mttrOrDeployFreqTutorials.forEach(tutorial -> tutorial.setTutorialItems(cicdPipelineTutorial.getTutorialItems()));
+		Optional<Tutorial> optionalCICDTutorial = tutorials.stream()
+				.filter(tutorial -> tutorial.getArea().equals(tutorialArea)).findFirst();
+		if (optionalCICDTutorial.isPresent() && cicdPipelineTutorial.isPresent()) {
+
+			optionalCICDTutorial.get().setTutorialItems(cicdPipelineTutorial.get().getTutorialItems());
+			// if gap area is MTTR or Deployment Frequency, add tutorials for Test
+			// automation, CICD pipeline, Monitoring
+		}
+		if (cicdPipelineTutorial.isPresent()) {
+
+			List<Tutorial> mttrOrDeployFreqTutorials = tutorials.stream()
+					.filter(tutorial -> tutorial.getArea().equals(GapArea.MTTR.getTutorialArea())
+							|| tutorial.getArea().equals(GapArea.DEPLOYMENT_FREQUENCY.getTutorialArea()))
+					.collect(Collectors.toList());
+
+			mttrOrDeployFreqTutorials
+					.forEach(tutorial -> tutorial.setTutorialItems(cicdPipelineTutorial.get().getTutorialItems()));
+		}
 
 		return tutorials;
 

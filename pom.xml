@@ -41,6 +41,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.github.fge</groupId>
+			<artifactId>json-schema-validator</artifactId>
+			<version>2.2.6</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -48,6 +55,38 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>com.microsoft.azure</groupId>
+				<artifactId>azure-webapp-maven-plugin</artifactId>
+				<version>1.12.0</version>
+				<configuration>
+					<subscriptionId>1ffe9995-77bd-4c1b-b445-4d7a864fd27f</subscriptionId>
+					<resourceGroup>c2023237-dissertation-app</resourceGroup>
+					<appName>devops-check</appName>
+					<pricingTier>F1</pricingTier>
+					<isPublic>true</isPublic>
+					<region>uksouth</region>
+					<runtime>
+						<os>Linux</os>
+						<webContainer>Java SE</webContainer>
+						<javaVersion>Java 11</javaVersion>
+					</runtime>
+					<deployment>
+						<resources>
+							<resource>
+								<filtering />
+								<mergeId />
+								<targetPath />
+								<directory>${project.basedir}/target</directory>
+								<includes>
+									<include>*.jar</include>
+								</includes>
+							</resource>
+						</resources>
+					</deployment>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
