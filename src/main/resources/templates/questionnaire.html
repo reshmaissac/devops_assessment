@@ -24,6 +24,7 @@
     <input type="hidden" id="emailInput" value="[[${email}]]" th:value="${email}" />
 
     <script>
+<!-- Function to generate html form from json data-->
         async function generateQuestionnaire() {
             const response = await fetch('questionnaire.json');
             const jsonData = await response.json();
@@ -81,7 +82,7 @@
             });
         }
 
-        // Call the function to generate the questionnaire on page load
+        // Function to generate the questionnaire on page load
         generateQuestionnaire();
 
         function isQuestionnaireValid() {
@@ -117,7 +118,7 @@
                 return; // Don't proceed with submission if there are unanswered questions
             }
 
-            // Access the email attribute set in the controller
+            // Get the email attribute set in the controller
             const emailInput = document.getElementById('emailInput');
             const email = emailInput.value;
 
